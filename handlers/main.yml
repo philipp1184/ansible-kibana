@@ -1,0 +1,9 @@
+- name: reload systemd
+  shell: systemctl daemon-reload
+
+- name: restart nginx
+  service: name=nginx state=restarted
+
+- name: restart kibana
+  service: name=kibana5@{{ item.instance_name }} state=restarted
+  with_items: '{{kibana_instances}}'

@@ -1,0 +1,14 @@
+es_url: "http://localhost:9200/"
+kibana_port: "5601"
+nginx_port: "8001"
+
+
+kibana_instances:
+    - { instance_name: 'default', kibana_port: '5601', nginx_port: '8001' }
+    
+kibana_inst:
+   default:
+      kibana_port: "5601"
+      nginx_port: "8001"
+
+

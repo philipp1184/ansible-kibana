@@ -1,0 +1,34 @@
+- name: Install NGINX
+  yum: name=nginx state=installed
+
+- name: copy Kibana YUM Repo File
+  copy: src=kibana.repo dest=/etc/yum.repos.d/kibana.repo
+  tags: kibana-install
+
+- name: Install Kibana
+  yum: name=kibana state=latest
+  tags: kibana-install
+
+- name: Create Kibana Configs
+  template: src=kibana.conf dest=/etc/kibana/kibana.yml
+  backup: true
+  tags:
+   - kibana-config  
+  notify:
+   - restart kibana
+
+
+- name: Create NGinx-Kibana Configs
+  template: src=nginx.conf dest=/etc/nginx/conf.d/kibana.conf
+  tags:
+   - kibana-config
+  notify:
+   - restart nginx
+
+- name: Start Kibana Services
+  service: name=kibana enabled=yes state=started
+
+
+- name: Start NGINX Services
+  service: name=nginx enabled=yes state=started  
+
