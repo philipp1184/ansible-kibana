@@ -13,10 +13,9 @@
   template: src=kibana.conf dest=/etc/kibana/kibana.yml
   backup: true
   tags:
-   - kibana-config  
+   - kibana-config
   notify:
    - restart kibana
-
 
 - name: Create NGinx-Kibana Configs
   template: src=nginx.conf dest=/etc/nginx/conf.d/kibana.conf
@@ -30,5 +29,4 @@
 
 
 - name: Start NGINX Services
-  service: name=nginx enabled=yes state=started  
-
+  service: name=nginx enabled=yes state=started

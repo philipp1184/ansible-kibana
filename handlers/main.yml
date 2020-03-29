@@ -5,5 +5,4 @@
   service: name=nginx state=restarted
 
 - name: restart kibana
-  service: name=kibana5@{{ item.instance_name }} state=restarted
-  with_items: '{{kibana_instances}}'
+  service: name=kibana state=restarted
