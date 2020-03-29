@@ -1,3 +1,6 @@
 es_url: "http://localhost:9200/"
 kibana_port: "5601"
-nginx_port: "8001"
+
+
+es_kibana_username: "kibana"
+es_kibana_password: "secret"

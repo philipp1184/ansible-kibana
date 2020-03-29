@@ -1,8 +1,5 @@
 - name: reload systemd
   shell: systemctl daemon-reload
 
-- name: restart nginx
-  service: name=nginx state=restarted
-
 - name: restart kibana
   service: name=kibana state=restarted
