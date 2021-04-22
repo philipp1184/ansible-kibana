@@ -18,3 +18,14 @@
 
 - name: Start Kibana Services
   service: name=kibana enabled=yes state=started
+
+- name: firewalld configuration
+  tags: "firewall"
+  firewalld:
+    port: "{{ item }}"
+    permanent: true
+    state: enabled
+  loop:
+    - "{{ kibana_port }}/tcp"
+    - "8001/tcp"
+  notify: reload firewalld

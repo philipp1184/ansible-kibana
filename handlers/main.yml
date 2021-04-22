@@ -3,3 +3,6 @@
 
 - name: restart kibana
   service: name=kibana state=restarted
+
+- name: reload firewalld
+  systemd: name=firewalld state=reloaded
