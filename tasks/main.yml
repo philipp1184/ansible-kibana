@@ -1,3 +1,7 @@
+- name: Gather the package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
 - name: copy Kibana YUM Repo File
   copy: src=kibana.repo dest=/etc/yum.repos.d/kibana.repo
   tags: kibana-install
@@ -29,3 +33,6 @@
     - "{{ kibana_port }}/tcp"
     - "8001/tcp"
   notify: reload firewalld
+
+- include: filebeat.yml
+  when: "'filebeat' in ansible_facts.packages"
